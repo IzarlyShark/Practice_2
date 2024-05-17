@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Копирование зависимостей
 COPY server/package.json .
-# COPY server/package-lock.json .
+COPY server/package-lock.json .
 
 # Установка зависимостей
 RUN npm install
