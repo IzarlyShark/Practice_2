@@ -1,28 +1,17 @@
-const jwt = require('jsonwebtoken');
 const { User } = require('../models'); // Импортируем модель User из models
 
 
 // Контроллер для аутентификации пользователя (логин)
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  
+  console.log(User);
   // Используем метод findOne модели User для поиска пользователя по email и password
   User.findOne({ where: { email, password } })
     .then((user) => {
       if (!user) {
-        throw new Error('Пользователь не найден или не правильный пароль');
+        throw new Error('Пользователь не найден или не правильный пароль или e-mail');
       }
-      
-      // Генерируем JWT токен для пользователя
-      const token = jwt.sign(
-        { _id: user.id },
-        'dev-secret',
-        { expiresIn: '7d' }
-      );
-      
-      // Устанавливаем JWT токен в куки и отправляем его в ответе
-      res.cookie('jwt', token, { httpOnly: false, secure: true, sameSite: 'none' });
-      return res.status(200).send({ token });
+      return res.status(200).send({ user });
     })
     .catch(next);
 };
@@ -43,7 +32,7 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => next(err)); // Передаем ошибку в обработчик ошибок
 };
 
-```
+
 // module.exports.login = (req, res, next) => {
 //     const { email, password } = req.body;
 //     return User.findUserByCredentials(email, password)
@@ -75,4 +64,3 @@ module.exports.createUser = (req, res, next) => {
 //       .send({ data: user }))
 //     .catch(next());
 // }; 
-```

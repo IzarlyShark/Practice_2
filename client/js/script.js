@@ -2,7 +2,7 @@ const form = document.querySelector('.form');
 const submit = document.querySelector('.form__submit')
 const inputs =document.querySelectorAll('.form__inp')
 const error = document.querySelector('.error')
-const url = 'https://order.drcash.sh/v1/order';
+const url = 'http://localhost:3000/users/login';
 
 function postOrder(client) {
     console.log(client);
@@ -10,12 +10,8 @@ function postOrder(client) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer RLPUUOQAMIKSAB2PSGUECA'
         },
-        body: JSON.stringify({
-            'stream_code': 'vv4uf',
-            'client': client
-        })
+        body: JSON.stringify(client)
     }).then(response => response.json());
 }
 
@@ -36,23 +32,16 @@ function validation(inp){
 
 function formSubmit(e) {
     e.preventDefault();
-    const numbers = JSON.parse(localStorage.getItem('numbers')) || []
-    const { name, phone } = e.target.elements;
+    const { emeil, password } = e.target.elements;
     const obj = {
-        name: name.value,
-        phone: phone.value
+        emeil: emeil.value,
+        password: password.value
     };
-    if(!numbers.includes(phone.value)){
-        error.classList.add('hidden')
         postOrder(obj)
             .then(data => {
-                localStorage.setItem('numbers', JSON.stringify([...numbers, phone.value]))
                 window.location.href = '/pages/try.html'
             })
             .catch(err => console.error(err));
-    }else {
-        error.classList.remove('hidden')
-    }
 }
 
 form.addEventListener('submit', formSubmit);

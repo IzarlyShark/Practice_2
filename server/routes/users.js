@@ -1,11 +1,11 @@
-// const controller = require('../controllers/user');
 const router = require('express').Router();
+const {login, createUser} = require('../controllers/user')
+// CRUD маршруты /пользователи
+// Маршрут аутентификации (вход)
+router.post('/login', login);
 
-// CRUD Routes /users
-router.get('/', controller.getUsers); // /users
-router.get('/:userId', controller.getUser); // /users/:userId
-router.post('/', controller.createUser); // /users
-router.put('/:userId', controller.updateUser); // /users/:userId
-router.delete('/:userId', controller.deleteUser); // /users/:userId
+// Маршрут создания пользователя
+router.post('/users', createUser); // Исправь опечатку
 
+// Экспортировать маршрутизатор
 module.exports = router;
