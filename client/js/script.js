@@ -32,9 +32,9 @@ function validation(inp){
 
 function formSubmit(e) {
     e.preventDefault();
-    const { emeil, password } = e.target.elements;
+    const { email, password } = e.target.elements;
     const obj = {
-        emeil: emeil.value,
+        email: email.value,
         password: password.value
     };
         postOrder(obj)

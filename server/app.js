@@ -3,12 +3,21 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const sequelize = require('./utils/database');
 const models = require('./models/index.js')
+const cors = require('cors')
 
 const app = express();
 
 const port = process.env.PORT || 3000;
 const host = "localhost";
 
+var corsOptions = function(req, res, next){ 
+  res.header('Access-Control-Allow-Origin', '*'); 
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 
+  'Content-Type, Authorization, Content-Length, X-Requested-With');
+   next();
+}
+app.use(corsOptions);
 app.use(bodyparser.json());
 // app.use(bodyparser.urlencoded({ extended: false }));
 
@@ -31,7 +40,7 @@ sequelize.authenticate()
 
   // Загрузка моделей
 models.sequelize.sync().then(() => {
-    console.log('Модели базы данных синхронизированы.');
+    console.log('Модели базы данных синхронизированы. 222');
   });
 
   app.listen(port, () => {

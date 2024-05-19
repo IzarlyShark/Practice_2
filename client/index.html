@@ -14,14 +14,14 @@
                 <h2 class="title">Login</h2>
                 <label for="">E-mail</label>
                 <input autocomplete="off"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                minlength="2" maxlength="30" placeholder="Enter your e-mail" name="emeil" class="form__inp" type="email" data-error-pattern="Некорректный адрес электронной почты" data-error-length="адрес должен быть валидным например test@example.com" required>
+                minlength="2" maxlength="30" placeholder="Enter your e-mail" name="email" class="form__inp" type="email" data-error-pattern="Некорректный адрес электронной почты" data-error-length="Адрес должен быть валидным например test@example.com" required>
                 <p class="error-inp"></p>
                 <label for="">Password</label>
                 <input autocomplete="off" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{4,16}$"
                 placeholder="Enter password" minlength="4" maxlength="16" name="password" class="form__inp" type="password" data-error-pattern="Пароль должен быть более 4 символов, должен содержать одну цифру от 1 до 9, одну строчную букву, одну заглавную букву, один специальный символ, без пробелов, и должен быть длиной 4–16 символов" data-error-length="Не верный Пароль" required>
                 <p class="error-inp"></p>
-                <p class="error hidden">Данные не корректны</p>
-                <button class="form__submit">Sing in</button>
+                <!-- <p class="error hidden">Данные не корректны</p> -->
+                <button class="form__submit">Sign in</button>
             </form>
         </section>
     </main>
